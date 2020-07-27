@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"tasksapp9e79ea7a": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
