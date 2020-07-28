@@ -16,7 +16,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Visibility, VisibilityOff, Person, VpnKey } from "@material-ui/icons";
 import { toClickable } from "./toClickable";
 import { Copyright } from "./Copyright";
-import * as auth from "../auth";
+import { useHistory, useLocation } from "react-router-dom";
+import { useAuth } from "../CognitoAuthProvider";
 
 type Inputs = {
   username: string;
@@ -53,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
 export function LoginPage() {
   const classes = useStyles();
 
+  const { login } = useAuth();
+
   const [visiblePassword, setPasswordVisible] = useState(false);
   const handleClick = () => setPasswordVisible(!visiblePassword);
 
@@ -61,9 +64,15 @@ export function LoginPage() {
     reValidateMode: "onChange",
   });
 
-  const login = (data: Inputs) => {
-    console.log(data);
-    auth.signIn(data.username, data.password);
+  const history = useHistory();
+  const location = useLocation();
+
+  const onSubmit = (data: Inputs) => {
+    login(data.username, data.password);
+    const { from }: any = location.state || {
+      from: { pathname: "/" },
+    };
+    history.replace(from);
   };
 
   return (
@@ -149,7 +158,7 @@ export function LoginPage() {
               name="submit"
               control={control}
               defaultValue=""
-              onClick={handleSubmit(login)}
+              onClick={handleSubmit(onSubmit)}
             />
             <Grid container>
               <Grid item xs>
