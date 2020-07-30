@@ -10,7 +10,7 @@ Amplify.configure(awsconfig);
 export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user?: CognitoUser;
+  user?: string;
   error?: any;
 }
 
@@ -50,7 +50,7 @@ export default function CognitoAuthProvider({ children }: any) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState<CognitoUser>();
+  const [user, setUser] = useState<string>();
 
   useEffect(() => {
     checkAuthenticated();
@@ -72,7 +72,7 @@ export default function CognitoAuthProvider({ children }: any) {
   const currentAuthenticatedUser = async (): Promise<void> => {
     const user: CognitoUser = await Auth.currentAuthenticatedUser();
 
-    setUser(user);
+    setUser(user.getUsername());
   };
 
   const signIn = ({ username, password }: LoginOption) => {
@@ -96,7 +96,7 @@ export default function CognitoAuthProvider({ children }: any) {
     setIsLoading(true);
     try {
       const result = await Auth.signUp(param);
-      setUser(result.user);
+      setUser(result.user.getUsername());
       setIsLoading(false);
       return result.user;
     } catch (error) {

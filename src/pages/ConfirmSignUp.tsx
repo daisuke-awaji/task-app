@@ -60,7 +60,7 @@ export function ConfirmSignUpPage() {
 
   const onSubmit = async (data: Inputs) => {
     const result = await confirmSignUp({
-      username: user?.getUsername(),
+      username: user,
       code: data.code,
     });
     if (result === "SUCCESS") history.push("/profile");

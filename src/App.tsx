@@ -3,20 +3,22 @@ import { SignInPage } from "./pages/SignInPage";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CognitoAuthProvider, { useAuth } from "./cognito/CognitoAuthProvider";
-import LogoutButton from "./components/auth/LogoutButton";
+
 import { ConfirmSignUpPage } from "./pages/ConfirmSignUp";
 import { SignUpPage } from "./pages/SignUpPage";
+import { Header } from "./components/Header";
 
 const Home = () => <div>Home</div>;
 const ProfilePage = () => {
   const { user } = useAuth();
 
-  return <div>{user?.getUsername()}</div>;
+  return <div>{user}</div>;
 };
 
 function App() {
   return (
     <CognitoAuthProvider>
+      <Header />
       <Router>
         <ul>
           <li>
@@ -34,7 +36,6 @@ function App() {
           <li>
             <Link to="/confirm">confirm</Link>
           </li>
-          <LogoutButton />
         </ul>
         <Switch>
           <Route path="/" exact component={Home} />
