@@ -1,11 +1,18 @@
 import React from "react";
-import { LoginPage } from "./components/LoginPage";
+import { SignInPage } from "./pages/SignInPage";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import CognitoAuthProvider from "./CognitoAuthProvider";
+import CognitoAuthProvider, { useAuth } from "./cognito/CognitoAuthProvider";
 import LogoutButton from "./components/auth/LogoutButton";
+import { ConfirmSignUpPage } from "./pages/ConfirmSignUp";
+import { SignUpPage } from "./pages/SignUpPage";
+
 const Home = () => <div>Home</div>;
-const Profile = () => <div>Profile</div>;
+const ProfilePage = () => {
+  const { user } = useAuth();
+
+  return <div>{user?.getUsername()}</div>;
+};
 
 function App() {
   return (
@@ -21,12 +28,20 @@ function App() {
           <li>
             <Link to="/login">Login</Link>
           </li>
+          <li>
+            <Link to="/signup">Sign up</Link>
+          </li>
+          <li>
+            <Link to="/confirm">confirm</Link>
+          </li>
           <LogoutButton />
         </ul>
         <Switch>
           <Route path="/" exact component={Home} />
-          <ProtectedRoute path="/profile" component={Profile} />
-          <Route path="/login" exact component={LoginPage} />
+          <ProtectedRoute path="/profile" component={ProfilePage} />
+          <Route path="/login" exact component={SignInPage} />
+          <Route path="/signup" exact component={SignUpPage} />
+          <Route path="/confirm" exact component={ConfirmSignUpPage} />
         </Switch>
       </Router>
     </CognitoAuthProvider>

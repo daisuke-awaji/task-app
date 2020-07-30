@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "../CognitoAuthProvider";
+import { AuthContext } from "../cognito/CognitoAuthProvider";
 import { Loading } from "./Loading";
 
 const ProtectedRoute = ({ component: Component, ...rest }: any) => {

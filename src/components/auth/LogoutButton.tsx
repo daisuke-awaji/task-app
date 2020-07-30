@@ -1,15 +1,18 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Loading } from "../Loading";
-import { useAuth } from "../../CognitoAuthProvider";
+import { useAuth } from "../../cognito/CognitoAuthProvider";
 
 export default function LogoutButton() {
-  const { isLoading, logout } = useAuth();
+  const { isAuthenticated, isLoading, signOut } = useAuth();
 
   if (isLoading) return <Loading />;
+
+  if (!isAuthenticated) return null;
+
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={() => logout()}>
+      <Button variant="contained" color="primary" onClick={() => signOut()}>
         LOGOUT
       </Button>
     </div>
