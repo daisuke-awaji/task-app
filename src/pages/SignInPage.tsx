@@ -39,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function SignInPage() {
+  const { isAuthenticated, signIn, error } = useAuth();
+
   const classes = useStyles();
 
   const [visiblePassword, setPasswordVisible] = useState(false);
@@ -49,10 +51,9 @@ export function SignInPage() {
     reValidateMode: "onChange",
   });
 
-  const { isAuthenticated, signIn, error } = useAuth();
-
   const history = useHistory();
   const location = useLocation();
+
   React.useEffect(() => {
     if (error) {
       setError("username", { message: error.message, type: error.name });
@@ -65,8 +66,15 @@ export function SignInPage() {
   }, [error, isAuthenticated, setError, location, history]);
 
   const onSubmit = (data: Inputs) => {
-    signIn({ username: data.username, password: data.password });
+    signIn({
+      username: data.username,
+      password: data.password,
+    });
   };
+
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <Container component="main" maxWidth="xs">

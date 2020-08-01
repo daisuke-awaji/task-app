@@ -25,9 +25,9 @@ type LoginOption = {
 };
 
 interface IAuthContext extends AuthState {
-  signIn: (signInOption: LoginOption) => void;
+  signIn: (signInOption: LoginOption) => Promise<void>;
   signUp: (params: SignUpParams) => Promise<CognitoUser | undefined>;
-  confirmSignUp: (params: any) => Promise<"SUCCESS" | "FAILED">;
+  confirmSignUp: (params: any) => Promise<void>;
   signOut: () => void;
 }
 
@@ -75,54 +75,48 @@ export default function CognitoAuthProvider({ children }: any) {
     setUser(user.getUsername());
   };
 
-  const signIn = ({ username, password }: LoginOption) => {
+  const signIn = async ({ username, password }: LoginOption): Promise<void> => {
     setIsLoading(true);
-    Auth.signIn(username, password)
-      .then(() => {
-        setIsAuthenticated(true);
-      })
-      .catch((error: any) => {
-        console.log("error signing in", error);
-        setError(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      await Auth.signIn(username, password);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.log("error signing in", error);
+      if (error.code === "UserNotConfirmedException") {
+        setUser(username);
+      }
+      setError(error);
+      setIsAuthenticated(false);
+    }
+    setIsLoading(false);
   };
 
   const signUp = async (
     param: SignUpParams
   ): Promise<CognitoUser | undefined> => {
     setIsLoading(true);
+    let result;
     try {
-      const result = await Auth.signUp(param);
+      result = await Auth.signUp(param);
       setUser(result.user.getUsername());
-      setIsLoading(false);
-      return result.user;
     } catch (error) {
       console.log("error signing up", error);
       setError(error);
-      setIsLoading(false);
-      return;
     }
+    setIsLoading(false);
+    return result?.user;
   };
 
-  const confirmSignUp = async ({
-    username,
-    code,
-  }: any): Promise<"SUCCESS" | "FAILED"> => {
+  const confirmSignUp = async ({ username, code }: any): Promise<void> => {
     setIsLoading(true);
     try {
       await Auth.confirmSignUp(username, code);
-      setIsLoading(false);
       setIsAuthenticated(true);
-      return "SUCCESS";
     } catch (error) {
       console.log("error confirming sign up", error);
       setError(error);
-      setIsLoading(false);
-      return "FAILED";
     }
+    setIsLoading(false);
   };
 
   const signOut = () => {

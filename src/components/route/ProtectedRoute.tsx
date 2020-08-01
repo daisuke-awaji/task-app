@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "../cognito/CognitoAuthProvider";
-import { Loading } from "./Loading";
+import { AuthContext } from "../../cognito/CognitoAuthProvider";
+import { Loading } from "../Loading";
 
-const ProtectedRoute = ({ component: Component, ...rest }: any) => {
+const ProtectedRoute = ({
+  component: Component,
+  layout: Layout,
+  ...rest
+}: any) => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);
 
   return (
@@ -11,7 +15,13 @@ const ProtectedRoute = ({ component: Component, ...rest }: any) => {
       {...rest}
       render={(props) => {
         if (isLoading) return <Loading />;
-        if (isAuthenticated) return <Component {...props} />;
+        if (isAuthenticated) {
+          return (
+            <Layout>
+              <Component {...props} />
+            </Layout>
+          );
+        }
         return (
           <Redirect
             to={{ pathname: "/login", state: { from: props.location } }}

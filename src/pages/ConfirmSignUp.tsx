@@ -59,13 +59,13 @@ export function ConfirmSignUpPage() {
   }, [error, isAuthenticated, setError, location, history]);
 
   const onSubmit = async (data: Inputs) => {
-    const result = await confirmSignUp({
+    await confirmSignUp({
       username: user,
       code: data.code,
     });
-    if (result === "SUCCESS") history.push("/profile");
   };
 
+  if (isAuthenticated) return null;
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>

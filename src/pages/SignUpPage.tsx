@@ -76,6 +76,7 @@ export function SignUpPage() {
     if (user) history.push("/confirm");
   };
 
+  if (isAuthenticated) return null;
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>

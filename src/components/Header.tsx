@@ -3,6 +3,9 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LogoutButton from "./auth/LogoutButton";
+import SignInButton from "./auth/SignInButton";
+import SignUpButton from "./auth/SignUpButton";
+import { UserProfileButton } from "./header/UserProfileButton";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -26,6 +29,9 @@ export const Header = () => {
           <Typography variant="h6" className={classes.title}>
             Tasks App
           </Typography>
+          <SignInButton color="primary" />
+          <SignUpButton color="primary" />
+          <UserProfileButton />
           <LogoutButton color="primary" />
         </Toolbar>
       </AppBar>
