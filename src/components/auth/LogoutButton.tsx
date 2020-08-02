@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../../cognito/CognitoAuthProvider";
+import { useAuth } from "../../cognito/AuthContext";
 import { Tooltip, IconButton } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 

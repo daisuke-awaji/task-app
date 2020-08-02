@@ -11,7 +11,7 @@ import { useForm, Controller } from "react-hook-form";
 import { MobileFriendly } from "@material-ui/icons";
 import { Copyright } from "../components/Copyright";
 import { useHistory, useLocation } from "react-router-dom";
-import { useAuth } from "../cognito/CognitoAuthProvider";
+import { useAuth } from "../cognito/AuthContext";
 import { SignInIconWithText } from "../components/IconWithText";
 
 type Inputs = {
@@ -60,7 +60,7 @@ export function ConfirmSignUpPage() {
 
   const onSubmit = async (data: Inputs) => {
     await confirmSignUp({
-      username: user,
+      username: user?.getUsername(),
       code: data.code,
     });
   };

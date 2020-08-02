@@ -12,7 +12,7 @@ import { Visibility, VisibilityOff, Person, Email } from "@material-ui/icons";
 import { toClickable } from "../components/toClickable";
 import { Copyright } from "../components/Copyright";
 import { useHistory, useLocation } from "react-router-dom";
-import { useAuth } from "../cognito/CognitoAuthProvider";
+import { useAuth } from "../cognito/AuthContext";
 import { SignInIconWithText } from "../components/IconWithText";
 
 type Inputs = {

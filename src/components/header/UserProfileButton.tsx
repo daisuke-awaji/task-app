@@ -2,7 +2,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 import { IconButton, Avatar } from "@material-ui/core";
-import { useAuth } from "../../cognito/CognitoAuthProvider";
+import { useAuth } from "../../cognito/AuthContext";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>

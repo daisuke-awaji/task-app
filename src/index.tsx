@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
+import CognitoAuthProvider from "./cognito/CognitoAuthProvider";
+import awsconfig from "./aws-exports";
+
 ReactDOM.render(
-  <React.StrictMode>
+  <CognitoAuthProvider amplifyConfig={awsconfig}>
     <App />
-  </React.StrictMode>,
+  </CognitoAuthProvider>,
   document.getElementById("root")
 );
 

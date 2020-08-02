@@ -1,56 +1,42 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
+
+import { useState, useEffect } from "react";
 import { SignUpParams } from "@aws-amplify/auth/lib-esm/types";
 import { CognitoUser } from "amazon-cognito-identity-js";
 
 import { Auth } from "aws-amplify";
 import Amplify from "aws-amplify";
-import awsconfig from "../aws-exports";
-Amplify.configure(awsconfig);
+import { AuthContext } from "./AuthContext";
 
-export interface AuthState {
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  user?: string;
-  error?: any;
-}
-
-const initialState: AuthState = {
-  isAuthenticated: false,
-  isLoading: false,
-};
-
-type LoginOption = {
+export type LoginOption = {
   username: string;
   password: string;
 };
-
-interface IAuthContext extends AuthState {
-  signIn: (signInOption: LoginOption) => Promise<void>;
-  signUp: (params: SignUpParams) => Promise<CognitoUser | undefined>;
-  confirmSignUp: (params: any) => Promise<void>;
-  signOut: () => void;
+interface ICognitoAuthProviderParams {
+  amplifyConfig: {
+    aws_project_region: string;
+    aws_cognito_identity_pool_id: string;
+    aws_cognito_region: string;
+    aws_user_pools_id: string;
+    aws_user_pools_web_client_id: string;
+    oauth: {
+      domain: string;
+      scope: string[];
+      redirectSignIn: string;
+      redirectSignOut: string;
+      responseType: string;
+    };
+    federationTarget: string;
+  };
+  children: any;
 }
 
-const stub = (): never => {
-  throw new Error(
-    "You forgot to wrap your component in <CognitoAuthProvider>."
-  );
-};
-const initialContext = {
-  ...initialState,
-  signIn: stub,
-  signUp: stub,
-  confirmSignUp: stub,
-  signOut: stub,
-};
-
-export const AuthContext = React.createContext<IAuthContext>(initialContext);
-
-export default function CognitoAuthProvider({ children }: any) {
+export default function CognitoAuthProvider(props: ICognitoAuthProviderParams) {
+  Amplify.configure(props.amplifyConfig);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState<string>();
+  const [user, setUser] = useState<CognitoUser>();
 
   useEffect(() => {
     checkAuthenticated();
@@ -72,7 +58,7 @@ export default function CognitoAuthProvider({ children }: any) {
   const currentAuthenticatedUser = async (): Promise<void> => {
     const user: CognitoUser = await Auth.currentAuthenticatedUser();
 
-    setUser(user.getUsername());
+    setUser(user);
   };
 
   const signIn = async ({ username, password }: LoginOption): Promise<void> => {
@@ -82,9 +68,6 @@ export default function CognitoAuthProvider({ children }: any) {
       setIsAuthenticated(true);
     } catch (error) {
       console.log("error signing in", error);
-      if (error.code === "UserNotConfirmedException") {
-        setUser(username);
-      }
       setError(error);
       setIsAuthenticated(false);
     }
@@ -98,7 +81,7 @@ export default function CognitoAuthProvider({ children }: any) {
     let result;
     try {
       result = await Auth.signUp(param);
-      setUser(result.user.getUsername());
+      setUser(result.user);
     } catch (error) {
       console.log("error signing up", error);
       setError(error);
@@ -144,9 +127,7 @@ export default function CognitoAuthProvider({ children }: any) {
         error,
       }}
     >
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 }
-
-export const useAuth = () => useContext(AuthContext);

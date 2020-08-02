@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { useAuth } from "../../cognito/CognitoAuthProvider";
+import { useAuth } from "../../cognito/AuthContext";
 import { useHistory } from "react-router-dom";
 
 export default function SignInButton(props: any) {
