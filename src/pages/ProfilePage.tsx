@@ -9,7 +9,6 @@ const ProfilePage = () => {
     user?.getUserAttributes((e, attributes) => {
       if (attributes) {
         for (const attribute of attributes) {
-          console.log(attribute);
           if (attribute.getName() === "email") {
             setEmail(attribute.getValue());
           }

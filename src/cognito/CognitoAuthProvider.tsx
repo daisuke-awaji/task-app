@@ -65,6 +65,7 @@ export default function CognitoAuthProvider(props: ICognitoAuthProviderParams) {
     setIsLoading(true);
     try {
       await Auth.signIn(username, password);
+      currentAuthenticatedUser();
       setIsAuthenticated(true);
     } catch (error) {
       console.log("error signing in", error);

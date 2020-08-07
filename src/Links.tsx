@@ -28,7 +28,6 @@ const LinkButton = ({ linkTo, text }: any) => {
   const history = useHistory();
   const location = useLocation();
 
-  console.log(location);
   const addStyle =
     location.pathname === linkTo ? { borderBottom: "1px solid #3f51b5" } : {};
   return (

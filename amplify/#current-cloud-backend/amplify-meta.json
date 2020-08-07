@@ -10,6 +10,13 @@
 			"StackName": "amplify-tasks-app-dev-230313",
 			"StackId": "arn:aws:cloudformation:ap-northeast-1:784126274549:stack/amplify-tasks-app-dev-230313/ea702160-d011-11ea-87be-0ecad432db5c",
 			"AmplifyAppId": "d3qd48a80dri7f"
+		},
+		"categories": {
+			"auth": {
+				"tasksapp9e79ea7a": {
+					"hostedUIProviderCreds": "[]"
+				}
+			}
 		}
 	},
 	"auth": {
@@ -18,11 +25,6 @@
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
 			"customAuth": false,
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-tasks-app-dev-230313-deployment/amplify-cfn-templates/auth/tasksapp9e79ea7a-cloudformation-template.yml",
-				"logicalId": "authtasksapp9e79ea7a"
-			},
-			"lastPushTimeStamp": "2020-07-27T14:18:41.441Z",
 			"output": {
 				"AppClientSecret": "3c6bu02agolinr40f0tkvethqac72f1nbrqg8835pkvuak2eh7n",
 				"UserPoolId": "ap-northeast-1_R7FtWWQ8g",
@@ -34,7 +36,36 @@
 				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/logout/\"]}",
 				"UserPoolName": "tasksapp9e79ea7a_userpool_9e79ea7a"
 			},
-			"lastPushDirHash": "XZeEeuSpnT4656/EO/7cIH9Wp2Y="
+			"lastPushTimeStamp": "2020-08-04T15:14:36.758Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-tasks-app-dev-230313-deployment/amplify-cfn-templates/auth/tasksapp9e79ea7a-cloudformation-template.yml",
+				"logicalId": "authtasksapp9e79ea7a"
+			}
+		}
+	},
+	"api": {
+		"taskapi": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authtasksapp9e79ea7a"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "e4x2bjybk5hdhpad6km7ya4wtu",
+				"GraphQLAPIEndpointOutput": "https://gr3ebtv6tfd23mlszghgh334xe.appsync-api.ap-northeast-1.amazonaws.com/graphql"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-tasks-app-dev-230313-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apitaskapi"
+			},
+			"lastPushTimeStamp": "2020-08-04T15:14:49.693Z",
+			"lastPushDirHash": "RFQNW037dTwePoTES2F9pSugWCE="
 		}
 	}
 }

@@ -6,5 +6,22 @@
 			"dependsOn": [],
 			"customAuth": false
 		}
+	},
+	"api": {
+		"taskapi": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authtasksapp9e79ea7a"
+						}
+					}
+				}
+			}
+		}
 	}
 }

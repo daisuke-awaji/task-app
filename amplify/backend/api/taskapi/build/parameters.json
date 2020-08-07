@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "taskapi",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authtasksapp9e79ea7a",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "fake-bucket",
+    "S3DeploymentRootKey": "amplify-appsync-files/f2f02211e00e7bbf20944007190fbde15f6fb30b"
+}
