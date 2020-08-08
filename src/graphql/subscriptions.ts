@@ -8,6 +8,7 @@ export const onCreateTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;
@@ -17,6 +18,7 @@ export const onUpdateTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;
@@ -26,6 +28,7 @@ export const onDeleteTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;

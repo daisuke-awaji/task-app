@@ -2,4 +2,5 @@ type Task @model {
   id: ID!
   name: String!
   description: String
+  status: String
 }

@@ -2,6 +2,7 @@ type Task {
   id: ID!
   name: String!
   description: String
+  status: String
 }
 
 enum ModelSortDirection {
@@ -91,6 +92,7 @@ input ModelTaskFilterInput {
   id: ModelIDInput
   name: ModelStringInput
   description: ModelStringInput
+  status: ModelStringInput
   and: [ModelTaskFilterInput]
   or: [ModelTaskFilterInput]
   not: ModelTaskFilterInput
@@ -105,12 +107,14 @@ input CreateTaskInput {
   id: ID
   name: String!
   description: String
+  status: String
 }
 
 input UpdateTaskInput {
   id: ID!
   name: String
   description: String
+  status: String
 }
 
 input DeleteTaskInput {
@@ -126,6 +130,7 @@ type Mutation {
 input ModelTaskConditionInput {
   name: ModelStringInput
   description: ModelStringInput
+  status: ModelStringInput
   and: [ModelTaskConditionInput]
   or: [ModelTaskConditionInput]
   not: ModelTaskConditionInput

@@ -8,6 +8,7 @@ export const getTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;
@@ -22,6 +23,7 @@ export const listTasks = /* GraphQL */ `
         id
         name
         description
+        status
       }
       nextToken
     }

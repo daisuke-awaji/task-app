@@ -36,7 +36,7 @@
 				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/logout/\"]}",
 				"UserPoolName": "tasksapp9e79ea7a_userpool_9e79ea7a"
 			},
-			"lastPushTimeStamp": "2020-08-04T15:14:36.758Z",
+			"lastPushTimeStamp": "2020-08-07T04:49:11.134Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-tasks-app-dev-230313-deployment/amplify-cfn-templates/auth/tasksapp9e79ea7a-cloudformation-template.yml",
 				"logicalId": "authtasksapp9e79ea7a"
@@ -64,8 +64,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-tasks-app-dev-230313-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apitaskapi"
 			},
-			"lastPushTimeStamp": "2020-08-04T15:14:49.693Z",
-			"lastPushDirHash": "RFQNW037dTwePoTES2F9pSugWCE="
+			"lastPushTimeStamp": "2020-08-07T04:49:13.186Z",
+			"lastPushDirHash": "6nGVG0he3mn4Q5dTC/cW5Gq6wjk="
 		}
 	}
 }

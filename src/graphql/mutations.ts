@@ -11,6 +11,7 @@ export const createTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;
@@ -23,6 +24,7 @@ export const updateTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;
@@ -35,6 +37,7 @@ export const deleteTask = /* GraphQL */ `
       id
       name
       description
+      status
     }
   }
 `;

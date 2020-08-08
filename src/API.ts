@@ -6,11 +6,13 @@ export type CreateTaskInput = {
   id?: string | null,
   name: string,
   description?: string | null,
+  status?: string | null,
 };
 
 export type ModelTaskConditionInput = {
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
+  status?: ModelStringInput | null,
   and?: Array< ModelTaskConditionInput | null > | null,
   or?: Array< ModelTaskConditionInput | null > | null,
   not?: ModelTaskConditionInput | null,
@@ -60,6 +62,7 @@ export type UpdateTaskInput = {
   id: string,
   name?: string | null,
   description?: string | null,
+  status?: string | null,
 };
 
 export type DeleteTaskInput = {
@@ -70,6 +73,7 @@ export type ModelTaskFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
+  status?: ModelStringInput | null,
   and?: Array< ModelTaskFilterInput | null > | null,
   or?: Array< ModelTaskFilterInput | null > | null,
   not?: ModelTaskFilterInput | null,
@@ -102,6 +106,7 @@ export type CreateTaskMutation = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };
 
@@ -116,6 +121,7 @@ export type UpdateTaskMutation = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };
 
@@ -130,6 +136,7 @@ export type DeleteTaskMutation = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };
 
@@ -143,6 +150,7 @@ export type GetTaskQuery = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };
 
@@ -160,6 +168,7 @@ export type ListTasksQuery = {
       id: string,
       name: string,
       description: string | null,
+      status: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -171,6 +180,7 @@ export type OnCreateTaskSubscription = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };
 
@@ -180,6 +190,7 @@ export type OnUpdateTaskSubscription = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };
 
@@ -189,5 +200,6 @@ export type OnDeleteTaskSubscription = {
     id: string,
     name: string,
     description: string | null,
+    status: string | null,
   } | null,
 };

@@ -10,5 +10,5 @@
         ]
     },
     "S3DeploymentBucket": "amplify-tasks-app-dev-230313-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/f2f02211e00e7bbf20944007190fbde15f6fb30b"
+    "S3DeploymentRootKey": "amplify-appsync-files/283250a09d97438b2aa9463ef83f64cbf827dfb8"
 }
