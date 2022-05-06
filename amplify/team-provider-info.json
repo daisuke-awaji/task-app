@@ -1,22 +1,21 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-tasks-app-dev-230313-authRole",
-            "UnauthRoleArn": "arn:aws:iam::784126274549:role/amplify-tasks-app-dev-230313-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::784126274549:role/amplify-tasks-app-dev-230313-authRole",
-            "Region": "ap-northeast-1",
-            "DeploymentBucketName": "amplify-tasks-app-dev-230313-deployment",
-            "UnauthRoleName": "amplify-tasks-app-dev-230313-unauthRole",
-            "StackName": "amplify-tasks-app-dev-230313",
-            "StackId": "arn:aws:cloudformation:ap-northeast-1:784126274549:stack/amplify-tasks-app-dev-230313/ea702160-d011-11ea-87be-0ecad432db5c",
-            "AmplifyAppId": "d3qd48a80dri7f"
-        },
-        "categories": {
-            "auth": {
-                "tasksapp9e79ea7a": {
-                    "hostedUIProviderCreds": "[]"
-                }
-            }
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-tasks-app-dev-230313-authRole",
+      "UnauthRoleArn": "arn:aws:iam::784126274549:role/amplify-tasks-app-dev-230313-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::784126274549:role/amplify-tasks-app-dev-230313-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-tasks-app-dev-230313-deployment",
+      "UnauthRoleName": "amplify-tasks-app-dev-230313-unauthRole",
+      "StackName": "amplify-tasks-app-dev-230313",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:784126274549:stack/amplify-tasks-app-dev-230313/ea702160-d011-11ea-87be-0ecad432db5c",
+      "AmplifyAppId": "d3qd48a80dri7f"
+    },
+    "categories": {
+      "auth": {
+        "tasksapp9e79ea7a": {},
+        "true": {}
+      }
     }
+  }
 }
